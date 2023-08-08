@@ -16,16 +16,12 @@ public class RadioTests {
     }
 
 
-
-
     @Test
     public void testSetCurrentStationWithNegativeValue() {
         Radio radio = new Radio();
         radio.setCurrentStation(-1);
         Assertions.assertEquals(9, radio.getCurrentStation());
     }
-
-
 
 
     @Test
@@ -36,16 +32,12 @@ public class RadioTests {
     }
 
 
-
-
     @Test
     public void testSetCurrentStationWithLowerBoundaryValue() {
         Radio radio = new Radio();
         radio.setCurrentStation(0);
         Assertions.assertEquals(0, radio.getCurrentStation());
     }
-
-
 
 
     @Test
@@ -56,16 +48,12 @@ public class RadioTests {
     }
 
 
-
-
     @Test
     public void testSetCurrentStationWithInvalidValue() {
         Radio radio = new Radio();
         radio.setCurrentStation(15);
         Assertions.assertEquals(0, radio.getCurrentStation());
     }
-
-
 
 
     @Test
@@ -76,16 +64,12 @@ public class RadioTests {
     }
 
 
-
-
     @Test
     public void testSetVolumeWithValidValue() {
         Radio radio = new Radio();
         radio.setVolume(50);
         Assertions.assertEquals(50, radio.getVolume());
     }
-
-
 
 
     @Test
@@ -96,16 +80,12 @@ public class RadioTests {
     }
 
 
-
-
     @Test
     public void testSetVolumeWithTooLargeValue() {
         Radio radio = new Radio();
         radio.setVolume(101);
         Assertions.assertEquals(100, radio.getVolume());
     }
-
-
 
 
     @Test
@@ -116,8 +96,6 @@ public class RadioTests {
     }
 
 
-
-
     @Test
     public void testSetVolumeWithUpperBoundaryValue() {
         Radio radio = new Radio();
@@ -126,16 +104,12 @@ public class RadioTests {
     }
 
 
-
-
     @Test
     public void setVolume_InvalidValue_NoChange() {
         Radio radio = new Radio();
         radio.setVolume(150);
         Assertions.assertEquals(100, radio.getVolume());
     }
-
-
 
 
     @Test
@@ -147,8 +121,6 @@ public class RadioTests {
     }
 
 
-
-
     @Test
     public void nextStation_CurrentStationIs9_SetTo0() {
         Radio radio = new Radio();
@@ -156,8 +128,6 @@ public class RadioTests {
         radio.nextStation();
         Assertions.assertEquals(0, radio.getCurrentStation());
     }
-
-
 
 
     @Test
@@ -169,8 +139,6 @@ public class RadioTests {
     }
 
 
-
-
     @Test
     public void prevStation_CurrentStationIs0_SetTo9() {
         Radio radio = new Radio();
@@ -178,8 +146,6 @@ public class RadioTests {
         radio.prevStation();
         Assertions.assertEquals(9, radio.getCurrentStation());
     }
-
-
 
 
     @Test
@@ -191,8 +157,6 @@ public class RadioTests {
     }
 
 
-
-
     @Test
     public void increaseVolume_VolumeIsMaxValue_NoChange() {
         Radio radio = new Radio();
@@ -200,8 +164,6 @@ public class RadioTests {
         radio.increaseVolume();
         Assertions.assertEquals(100, radio.getVolume());
     }
-
-
 
 
     @Test
@@ -213,8 +175,6 @@ public class RadioTests {
     }
 
 
-
-
     @Test
     public void decreaseVolume_VolumeIsMinValue_NoChange() {
         Radio radio = new Radio();
@@ -222,12 +182,6 @@ public class RadioTests {
         radio.decreaseVolume();
         Assertions.assertEquals(0, radio.getVolume());
     }
-
-
-
-
-
-
 
 
 }
