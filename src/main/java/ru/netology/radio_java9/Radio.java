@@ -27,17 +27,17 @@ public class Radio {
         return currentStation;
     }
 
-    public void setCurrentStation(int currentStation) {
+    public void setCurrentStation(int numberOfStations) {
         //if (currentStation >= 0 && currentStation < numberOfStations) {
         //this.currentStation = currentStation;
         //}
         //}
-        if (currentStation < 0) {
+        if (numberOfStations < 0) {
             this.currentStation = 9;
-        } else if (currentStation > numberOfStations) {
+        } else if (numberOfStations > 9) {
             this.currentStation = 0;
         } else {
-            this.currentStation = currentStation;
+            this.currentStation = numberOfStations;
         }
     }
 
