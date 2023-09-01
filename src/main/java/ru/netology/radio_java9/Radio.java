@@ -3,6 +3,8 @@ package ru.netology.radio_java9;
 public class Radio {
 
     private int numberOfStations;
+    //private int minCurrentStation = 0;
+    //private int maxCurrentStation = 9;
     private int currentStation;
     private int volume;
     private int maxStationId;
@@ -10,7 +12,8 @@ public class Radio {
     public Radio() {
         this.currentStation = 0;
         this.numberOfStations = 10;
-        this.maxStationId = this.numberOfStations - 1;
+        this.maxStationId = 9;
+        //this.maxStationId = this.numberOfStations - 1;
         this.volume = 0;
     }
 
@@ -20,31 +23,31 @@ public class Radio {
         this.volume = 0;
     }
 
-    public int getNumberOfStations() {
-        return numberOfStations;
-    }
+   // public int getNumberOfStations() {
+      //  return numberOfStations;
+    //}
 
     public int getCurrentStation() {
 
         return currentStation;
     }
 
-    public void setCurrentStation(int numberOfStations) {
+    public void setCurrentStation(int currentStation) {
         //if (currentStation >= 0 && currentStation < numberOfStations) {
         //this.currentStation = currentStation;
         //}
         //}
-        if (numberOfStations < 0) {
-            this.currentStation = maxStationId;
-        } else if (numberOfStations > maxStationId) {
+        if (currentStation < 0) {
+            this.currentStation = numberOfStations - 1;
+        } else if (currentStation > numberOfStations) {
             this.currentStation = 0;
         } else {
-            this.currentStation = numberOfStations;
+            this.currentStation = currentStation;
         }
     }
 
     public void nextStation() {
-        if (currentStation ==  numberOfStations - 1) {
+        if (currentStation ==  numberOfStations - 1 ) {
             currentStation = 0;
         } else {
             currentStation++;
@@ -53,7 +56,7 @@ public class Radio {
 
     public void prevStation() {
         if (currentStation == 0) {
-            currentStation = numberOfStations - 1;
+            currentStation = numberOfStations -1;
         } else {
             currentStation--;
         }
