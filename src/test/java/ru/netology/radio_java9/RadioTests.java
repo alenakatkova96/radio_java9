@@ -5,52 +5,68 @@ import org.junit.jupiter.api.Test;
 
 public class RadioTests {
     @Test
-    public void testSetCurrentStationWithValidValue() {
+    public void testGetCurrentStation() {
+        Radio radio = new Radio();
+        Assertions.assertEquals(0, radio.getCurrentStation());
+    }
+
+    @Test
+    public void testSetCurrentStation() {
         Radio radio = new Radio();
         radio.setCurrentStation(5);
         Assertions.assertEquals(5, radio.getCurrentStation());
     }
 
     @Test
-    public void testSetCurrentStationWithNegativeValue() {
+    public void testSetCurrentStationNegativeValue() {
         Radio radio = new Radio();
         radio.setCurrentStation(-1);
         Assertions.assertEquals(9, radio.getCurrentStation());
     }
 
     @Test
-    public void testSetCurrentStationWithTooLargeValue() {
+    public void testSetCurrentStationInvalid() {
         Radio radio = new Radio();
-        radio.setCurrentStation(10);
+        radio.setCurrentStation(15);
         Assertions.assertEquals(0, radio.getCurrentStation());
     }
 
     @Test
-    public void testSetCurrentStationWithLowerBoundaryValue() {
-        Radio radio = new Radio();
+    public void testNextStation() {
+        Radio radio = new Radio(5);
+        radio.setCurrentStation(3);
+        radio.nextStation();
+        Assertions.assertEquals(4, radio.getCurrentStation());
+    }
+
+    @Test
+    public void testNextStationLoop() {
+        Radio radio = new Radio(5);
+        radio.setCurrentStation(4);
+        radio.nextStation();
+        Assertions.assertEquals(0, radio.getCurrentStation());
+    }
+
+    @Test
+    public void testPrevStation() {
+        Radio radio = new Radio(5);
+        radio.setCurrentStation(2);
+        radio.prevStation();
+        Assertions.assertEquals(1, radio.getCurrentStation());
+    }
+
+    @Test
+    public void testPrevStationLoop() {
+        Radio radio = new Radio(5);
         radio.setCurrentStation(0);
-        Assertions.assertEquals(0, radio.getCurrentStation());
+        radio.prevStation();
+        Assertions.assertEquals(4, radio.getCurrentStation());
     }
 
     @Test
-    public void testSetCurrentStationWithUpperBoundaryValue() {
+    public void testGetVolume() {
         Radio radio = new Radio();
-        radio.setCurrentStation(9);
-        Assertions.assertEquals(9, radio.getCurrentStation());
-    }
-
-    @Test
-    public void testSetCurrentStationWithInvalidValue() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(15);
-        Assertions.assertEquals(0, radio.getCurrentStation());
-    }
-
-    @Test
-    public void setCurrentStation_InvalidNumber_NoChange() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(15);
-        Assertions.assertEquals(0, radio.getCurrentStation());
+        Assertions.assertEquals(0, radio.getVolume());
     }
 
     @Test
@@ -96,47 +112,14 @@ public class RadioTests {
     }
 
     @Test
-    public void nextStation_CurrentStationNot9_IncrementStation() {
+    public void testIncreaseVolume() {
         Radio radio = new Radio();
-        radio.setCurrentStation(3);
-        radio.nextStation();
-        Assertions.assertEquals(4, radio.getCurrentStation());
-    }
-
-    @Test
-    public void nextStation_CurrentStationIs9_SetTo0() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(9);
-        radio.nextStation();
-        Assertions.assertEquals(0, radio.getCurrentStation());
-    }
-
-    @Test
-    public void prevStation_CurrentStationNot0_DecrementStation() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(7);
-        radio.prevStation();
-        Assertions.assertEquals(6, radio.getCurrentStation());
-    }
-
-    @Test
-    public void prevStation_CurrentStationIs0_SetTo9() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(0);
-        radio.prevStation();
-        Assertions.assertEquals(9, radio.getCurrentStation());
-    }
-
-    @Test
-    public void increaseVolume_VolumeNotMaxValue_IncrementVolume() {
-        Radio radio = new Radio();
-        radio.setVolume(50);
         radio.increaseVolume();
-        Assertions.assertEquals(51, radio.getVolume());
+        Assertions.assertEquals(1, radio.getVolume());
     }
 
     @Test
-    public void increaseVolume_VolumeIsMaxValue_NoChange() {
+    public void testIncreaseVolumeMax() {
         Radio radio = new Radio();
         radio.setVolume(100);
         radio.increaseVolume();
@@ -144,20 +127,18 @@ public class RadioTests {
     }
 
     @Test
-    public void decreaseVolume_VolumeNotMinValue_DecrementVolume() {
+    public void testDecreaseVolume() {
         Radio radio = new Radio();
-        radio.setVolume(30);
+        radio.setVolume(50);
         radio.decreaseVolume();
-        Assertions.assertEquals(29, radio.getVolume());
+        Assertions.assertEquals(49, radio.getVolume());
     }
 
     @Test
-    public void decreaseVolume_VolumeIsMinValue_NoChange() {
+    public void testDecreaseVolumeMin() {
         Radio radio = new Radio();
-        radio.setVolume(0);
         radio.decreaseVolume();
         Assertions.assertEquals(0, radio.getVolume());
     }
-
 }
 
