@@ -5,10 +5,12 @@ public class Radio {
     private int numberOfStations;
     private int currentStation;
     private int volume;
+    private int maxStationId;
 
     public Radio() {
         this.currentStation = 0;
         this.numberOfStations = 10;
+        this.maxStationId = this.numberOfStations - 1;
         this.volume = 0;
     }
 
@@ -33,8 +35,8 @@ public class Radio {
         //}
         //}
         if (numberOfStations < 0) {
-            this.currentStation = 9;
-        } else if (numberOfStations > 9) {
+            this.currentStation = maxStationId;
+        } else if (numberOfStations > maxStationId) {
             this.currentStation = 0;
         } else {
             this.currentStation = numberOfStations;
